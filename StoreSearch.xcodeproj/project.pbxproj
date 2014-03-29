@@ -19,6 +19,9 @@
 		597FE66C18E4749B000C6B8C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 597FE66A18E4749B000C6B8C /* InfoPlist.strings */; };
 		597FE66E18E4749B000C6B8C /* StoreSearchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 597FE66D18E4749B000C6B8C /* StoreSearchTests.m */; };
 		597FE67918E6FE26000C6B8C /* SearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 597FE67818E6FE26000C6B8C /* SearchResult.m */; };
+		597FE67B18E71600000C6B8C /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 597FE67A18E71600000C6B8C /* SearchResultCell.xib */; };
+		597FE67E18E78708000C6B8C /* SearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 597FE67D18E78708000C6B8C /* SearchResultCell.m */; };
+		597FE68018E78A40000C6B8C /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 597FE67F18E78A40000C6B8C /* NothingFoundCell.xib */; };
 		59F5BFE318E5183500692742 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F5BFE218E5183500692742 /* AppDelegate.m */; };
 		59F5BFE718E51D7D00692742 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F5BFE518E51D7D00692742 /* SearchViewController.m */; };
 		59F5BFE818E51D7D00692742 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59F5BFE618E51D7D00692742 /* SearchViewController.xib */; };
@@ -51,6 +54,10 @@
 		597FE66D18E4749B000C6B8C /* StoreSearchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreSearchTests.m; sourceTree = "<group>"; };
 		597FE67718E6FE26000C6B8C /* SearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResult.h; sourceTree = "<group>"; };
 		597FE67818E6FE26000C6B8C /* SearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResult.m; sourceTree = "<group>"; };
+		597FE67A18E71600000C6B8C /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
+		597FE67C18E78708000C6B8C /* SearchResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultCell.h; sourceTree = "<group>"; };
+		597FE67D18E78708000C6B8C /* SearchResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultCell.m; sourceTree = "<group>"; };
+		597FE67F18E78A40000C6B8C /* NothingFoundCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
 		59F5BFE118E5183500692742 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		59F5BFE218E5183500692742 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		59F5BFE418E51D7D00692742 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
@@ -121,9 +128,13 @@
 				597FE64918E4749B000C6B8C /* Supporting Files */,
 				59F5BFE418E51D7D00692742 /* SearchViewController.h */,
 				59F5BFE518E51D7D00692742 /* SearchViewController.m */,
+				597FE67F18E78A40000C6B8C /* NothingFoundCell.xib */,
 				59F5BFE618E51D7D00692742 /* SearchViewController.xib */,
 				597FE67718E6FE26000C6B8C /* SearchResult.h */,
 				597FE67818E6FE26000C6B8C /* SearchResult.m */,
+				597FE67A18E71600000C6B8C /* SearchResultCell.xib */,
+				597FE67C18E78708000C6B8C /* SearchResultCell.h */,
+				597FE67D18E78708000C6B8C /* SearchResultCell.m */,
 			);
 			path = StoreSearch;
 			sourceTree = "<group>";
@@ -236,6 +247,8 @@
 			files = (
 				597FE65B18E4749B000C6B8C /* Images.xcassets in Resources */,
 				597FE64D18E4749B000C6B8C /* InfoPlist.strings in Resources */,
+				597FE67B18E71600000C6B8C /* SearchResultCell.xib in Resources */,
+				597FE68018E78A40000C6B8C /* NothingFoundCell.xib in Resources */,
 				59F5BFE818E51D7D00692742 /* SearchViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,6 +270,7 @@
 			files = (
 				59F5BFE318E5183500692742 /* AppDelegate.m in Sources */,
 				59F5BFE718E51D7D00692742 /* SearchViewController.m in Sources */,
+				597FE67E18E78708000C6B8C /* SearchResultCell.m in Sources */,
 				597FE67918E6FE26000C6B8C /* SearchResult.m in Sources */,
 				597FE64F18E4749B000C6B8C /* main.m in Sources */,
 			);
