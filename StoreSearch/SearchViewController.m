@@ -38,6 +38,8 @@ static NSString *const NothingFoundCellIdentifier = @"NothingFoundCell";
          forCellReuseIdentifier:NothingFoundCellIdentifier];
 
     self.tableView.rowHeight = 80;
+    
+    [self.searchBar becomeFirstResponder];
 }
 
 #pragma mark - UITableViewDataSource
