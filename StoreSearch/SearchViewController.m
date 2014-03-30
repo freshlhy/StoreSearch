@@ -12,6 +12,7 @@
 
 static NSString *const SearchResultCellIdentifier = @"SearchResultCell";
 static NSString *const NothingFoundCellIdentifier = @"NothingFoundCell";
+static NSString *const LoadingCellIdentifier = @"LoadingCell";
 
 @interface SearchViewController () <UITableViewDataSource, UITableViewDelegate,
                                     UISearchBarDelegate>
@@ -23,6 +24,7 @@ static NSString *const NothingFoundCellIdentifier = @"NothingFoundCell";
 
 @implementation SearchViewController {
     NSMutableArray *_searchResults;
+    BOOL _isLoading;
 }
 
 - (void)viewDidLoad {
@@ -33,9 +35,14 @@ static NSString *const NothingFoundCellIdentifier = @"NothingFoundCell";
         [UINib nibWithNibName:SearchResultCellIdentifier bundle:nil];
     [self.tableView registerNib:cellNib
          forCellReuseIdentifier:SearchResultCellIdentifier];
+
     cellNib = [UINib nibWithNibName:NothingFoundCellIdentifier bundle:nil];
     [self.tableView registerNib:cellNib
          forCellReuseIdentifier:NothingFoundCellIdentifier];
+
+    cellNib = [UINib nibWithNibName:LoadingCellIdentifier bundle:nil];
+    [self.tableView registerNib:cellNib
+         forCellReuseIdentifier:LoadingCellIdentifier];
 
     self.tableView.rowHeight = 80;
 
@@ -46,7 +53,9 @@ static NSString *const NothingFoundCellIdentifier = @"NothingFoundCell";
 
 - (NSInteger)tableView:(UITableView *)tableView
     numberOfRowsInSection:(NSInteger)section {
-    if (_searchResults == nil) {
+    if (_isLoading) {
+        return 1;
+    } else if (_searchResults == nil) {
         return 0;
     } else if ([_searchResults count] == 0) {
         return 1;
@@ -56,7 +65,15 @@ static NSString *const NothingFoundCellIdentifier = @"NothingFoundCell";
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([_searchResults count] == 0) {
+    if (_isLoading) {
+        UITableViewCell *cell =
+            [tableView dequeueReusableCellWithIdentifier:LoadingCellIdentifier
+                                            forIndexPath:indexPath];
+        UIActivityIndicatorView *spinner =
+            (UIActivityIndicatorView *)[cell viewWithTag:100];
+        [spinner startAnimating];
+        return cell;
+    } else if ([_searchResults count] == 0) {
         return [tableView
             dequeueReusableCellWithIdentifier:NothingFoundCellIdentifier
                                  forIndexPath:indexPath];
@@ -109,6 +126,9 @@ static NSString *const NothingFoundCellIdentifier = @"NothingFoundCell";
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     if ([searchBar.text length] > 0) {
         [searchBar resignFirstResponder];
+        
+        _isLoading = YES;
+        [self.tableView reloadData];
 
         _searchResults = [NSMutableArray arrayWithCapacity:10];
 
@@ -133,6 +153,7 @@ static NSString *const NothingFoundCellIdentifier = @"NothingFoundCell";
         [self parseDictionary:dictionary];
         [_searchResults sortUsingSelector:@selector(compareName:)];
 
+        _isLoading = NO;
         [self.tableView reloadData];
     }
 }
@@ -282,7 +303,7 @@ static NSString *const NothingFoundCellIdentifier = @"NothingFoundCell";
 }
 - (NSIndexPath *)tableView:(UITableView *)tableView
     willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([_searchResults count] == 0) {
+    if ([_searchResults count] == 0 || _isLoading) {
         return nil;
     } else {
         return indexPath;
