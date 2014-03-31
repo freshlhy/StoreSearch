@@ -126,35 +126,35 @@ static NSString *const LoadingCellIdentifier = @"LoadingCell";
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     if ([searchBar.text length] > 0) {
         [searchBar resignFirstResponder];
-        
+
         _isLoading = YES;
         [self.tableView reloadData];
 
         _searchResults = [NSMutableArray arrayWithCapacity:10];
 
-        NSURL *url = [self urlWithSearchText:searchBar.text];
-
-        NSString *jsonString = [self performStoreRequestWithURL:url];
-
-        if (jsonString == nil) {
-            [self showNetworkError];
-            return;
-        }
-
-        NSDictionary *dictionary = [self parseJSON:jsonString];
-
-        if (dictionary == nil) {
-            [self showNetworkError];
-            return;
-        }
-
-        NSLog(@"Dictionary '%@'", dictionary);
-
-        [self parseDictionary:dictionary];
-        [_searchResults sortUsingSelector:@selector(compareName:)];
-
-        _isLoading = NO;
-        [self.tableView reloadData];
+        dispatch_queue_t queue =
+            dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_async(queue, ^{
+            NSURL *url = [self urlWithSearchText:searchBar.text];
+            NSString *jsonString = [self performStoreRequestWithURL:url];
+            if (jsonString == nil) {
+                dispatch_async(dispatch_get_main_queue(),
+                               ^{ [self showNetworkError]; });
+                return;
+            }
+            NSDictionary *dictionary = [self parseJSON:jsonString];
+            if (dictionary == nil) {
+                dispatch_async(dispatch_get_main_queue(),
+                               ^{ [self showNetworkError]; });
+                return;
+            }
+            [self parseDictionary:dictionary];
+            [_searchResults sortUsingSelector:@selector(compareName:)];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                _isLoading = NO;
+                [self.tableView reloadData];
+            });
+        });
     }
 }
 
