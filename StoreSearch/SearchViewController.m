@@ -271,11 +271,19 @@ static NSString *const LoadingCellIdentifier = @"LoadingCell";
 
 - (void)tableView:(UITableView *)tableView
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [self.searchBar resignFirstResponder];
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     DetailViewController *controller =
         [[DetailViewController alloc] initWithNibName:@"DetailViewController"
                                                bundle:nil];
+    
+    SearchResult *searchResult = _searchResults[indexPath.row];
+    controller.searchResult = searchResult;
+    
+    controller.view.frame = self.view.bounds;
     [self.view addSubview:controller.view];
     [self addChildViewController:controller];
     [controller didMoveToParentViewController:self];

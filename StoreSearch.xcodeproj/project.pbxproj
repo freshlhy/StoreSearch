@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		49C646F042C949A79CEA5390 /* libPods-StoreSearch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5142CB714DA14CFE857F5C0D /* libPods-StoreSearch.a */; };
+		5932521218EAB4A4004D61FE /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5932521118EAB4A4004D61FE /* GradientView.m */; };
 		597FE64318E4749B000C6B8C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 597FE64218E4749B000C6B8C /* Foundation.framework */; };
 		597FE64518E4749B000C6B8C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 597FE64418E4749B000C6B8C /* CoreGraphics.framework */; };
 		597FE64718E4749B000C6B8C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 597FE64618E4749B000C6B8C /* UIKit.framework */; };
@@ -44,6 +45,8 @@
 
 /* Begin PBXFileReference section */
 		5142CB714DA14CFE857F5C0D /* libPods-StoreSearch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StoreSearch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5932521018EAB4A4004D61FE /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
+		5932521118EAB4A4004D61FE /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
 		597FE63F18E4749B000C6B8C /* StoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		597FE64218E4749B000C6B8C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		597FE64418E4749B000C6B8C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -155,6 +158,8 @@
 				599AA63618E98F5E008D4EEA /* DetailViewController.h */,
 				599AA63718E98F5E008D4EEA /* DetailViewController.m */,
 				599AA63818E98F5E008D4EEA /* DetailViewController.xib */,
+				5932521018EAB4A4004D61FE /* GradientView.h */,
+				5932521118EAB4A4004D61FE /* GradientView.m */,
 			);
 			path = StoreSearch;
 			sourceTree = "<group>";
@@ -331,6 +336,7 @@
 				597FE67E18E78708000C6B8C /* SearchResultCell.m in Sources */,
 				597FE67918E6FE26000C6B8C /* SearchResult.m in Sources */,
 				597FE64F18E4749B000C6B8C /* main.m in Sources */,
+				5932521218EAB4A4004D61FE /* GradientView.m in Sources */,
 				599AA63918E98F5E008D4EEA /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
