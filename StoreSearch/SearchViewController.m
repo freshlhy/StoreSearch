@@ -276,7 +276,9 @@ static NSString *const LoadingCellIdentifier = @"LoadingCell";
     DetailViewController *controller =
         [[DetailViewController alloc] initWithNibName:@"DetailViewController"
                                                bundle:nil];
-    [self presentViewController:controller animated:YES completion:nil];
+    [self.view addSubview:controller.view];
+    [self addChildViewController:controller];
+    [controller didMoveToParentViewController:self];
 }
 - (NSIndexPath *)tableView:(UITableView *)tableView
     willSelectRowAtIndexPath:(NSIndexPath *)indexPath {

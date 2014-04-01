@@ -34,7 +34,9 @@
 }
 
 - (IBAction)close:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self willMoveToParentViewController:nil];
+    [self.view removeFromSuperview];
+    [self removeFromParentViewController];
 }
 
 @end
