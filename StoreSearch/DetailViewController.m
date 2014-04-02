@@ -10,6 +10,7 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "DetailViewController.h"
 #import "SearchResult.h"
+#import "GradientView.h"
 
 @interface DetailViewController () <UIGestureRecognizerDelegate>
 
@@ -23,7 +24,9 @@
 
 @end
 
-@implementation DetailViewController
+@implementation DetailViewController {
+    GradientView *_gradientView;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil
                bundle:(NSBundle *)nibBundleOrNil {
@@ -62,7 +65,7 @@
     if (self.searchResult != nil) {
         [self updateUI];
     }
-    
+
     self.view.backgroundColor = [UIColor clearColor];
 }
 
@@ -106,7 +109,41 @@
         openURL:[NSURL URLWithString:self.searchResult.storeURL]];
 }
 
+- (void)presentInParentViewController:(UIViewController *)parentViewController {
+    
+    _gradientView = [[GradientView alloc]
+                     initWithFrame:parentViewController.view.bounds];
+    [parentViewController.view addSubview:_gradientView];
+    
+    self.view.frame = parentViewController.view.bounds;
+    [parentViewController.view addSubview:self.view];
+    [parentViewController addChildViewController:self];
+    CAKeyframeAnimation *bounceAnimation =
+        [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
+    bounceAnimation.duration = 0.4;
+    bounceAnimation.delegate = self;
+    bounceAnimation.values = @[ @0.7, @1.2, @0.9, @1.0 ];
+    bounceAnimation.keyTimes = @[ @0.0, @0.334, @0.666, @1.0 ];
+    bounceAnimation.timingFunctions = @[
+        [CAMediaTimingFunction
+            functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
+        [CAMediaTimingFunction
+            functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
+        [CAMediaTimingFunction
+            functionWithName:kCAMediaTimingFunctionEaseInEaseOut]
+    ];
+    [self.view.layer addAnimation:bounceAnimation forKey:@"bounceAnimation"];
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+    [self didMoveToParentViewController:self.parentViewController];
+}
+
 - (IBAction)close:(id)sender {
+    [self dismissFromParentViewController];
+}
+
+- (void)dismissFromParentViewController {
     [self willMoveToParentViewController:nil];
     [self.view removeFromSuperview];
     [self removeFromParentViewController];
